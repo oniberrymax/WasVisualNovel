@@ -18,7 +18,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "angry", 
             text: "I bought your device two days ago and it already stopped working. I'm extremely disappointed.", 
-            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
+            image: "images/customer/customer-angry.jpg", 
             choices: [
               { text: "Apologize and ask questions", next: "investigate_support" }, 
               { text: "Request receipt first", next: "policy_support" }] }, 
@@ -26,28 +26,28 @@ const scenarios = {
             character: "Support Agent", 
             emotion: "calm", 
             text: "I understand your frustration. Can you tell me exactly what happened so we can fix it quickly?", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: "images/agent/agent-calm.png", 
             choices: [
               { text: "Next", next: "investigate" }] },
           policy_support: { 
             character: "Support Agent", 
             emotion: "calm", 
             text: "I apologize if that feels inconvenient. Our store policy requires us to check the receipt first before we can provide support like returns, replacements, or repairs. It helps us confirm the purchase details and make sure we assist you properly.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: "images/agent/agent-calm.png", 
             choices: [
                { text: "Next", next: "policy" } ] }, 
           policy_support2: { 
             character: "Support Agent", 
             emotion: "calm", 
             text: "I completely understand how frustrating it can be when an item isn’t working and you’re trying to get help. I truly want to assist you with this. However, our store policy requires us to verify the receipt first before we can proceed with checking the item or providing support.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: "images/agent/agent-calm.png", 
             choices: [
                { text: "Next", next: "customer_receipt" } ] }, 
           policy: { 
             character: "Customer", 
             emotion: "annoyed", 
             text: "So before even helping me you want paperwork?", 
-            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
+            image: "images/customer/customer-angry.jpg", 
             choices: [
               { text: "Explain policy calmly", next: "policy_support2" }, 
               { text: "Double down on policy", next: "double_down_policy" }] }, 
@@ -55,7 +55,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "calm", 
             text: "Oh, I see. I might have it in my bag. Let me check it... Here you go.", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: "images/customer/customer-frustrated.png", 
             choices: [
               { text: "Get the gadget and investigate", next: "investigate_support" }, 
               { text: "Keep him in que even the official receipt has presented", next: "bad_end" }] }, 
@@ -63,21 +63,21 @@ const scenarios = {
             character: "Customer", 
             emotion: "calm", 
             text: "Thank you for looking and providing the receipt. We have verified your purchase. Can tell me exactly what happened so we can fix it quickly?",
-            image: "/WasVisualNovel/images/customer/customer-angry.jpg",
+            image: "images/customer/customer-angry.jpg",
             choices: [
               { text: "Get the gadget and investigate", next: "investigate" } ] },
           double_down_policy: { 
             character: "Support Agent", 
             emotion: "angry", 
             text: "If you don't have it then I can’t help you. It doesn’t matter where you bought it. No receipt, no support. That’s the rule!", 
-            image: "/WasVisualNovel/images/agent/agent-annoyed.png", 
+            image: "images/agent/agent-annoyed.png", 
             choices: [
               { text: "Next", next: "bad_end" }] },      
           investigate: { 
             character: "Customer", 
             emotion: "frustrated", 
             text: "It stopped powering on completely. I charged it overnight.", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: "images/customer/customer-frustrated.png", 
             choices: [
               { text: "Walk through troubleshooting", next: "diagnose" }, 
               { text: "Offer replacement immediately", next: "replacement" }] }, 
@@ -85,7 +85,7 @@ const scenarios = {
             character: "Support Agent", 
             emotion: "calm", 
             text: "Let's try a quick reset process together.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: "images/agent/agent-calm.png", 
             randomOutcomes: [
               { chance: 0.4, next: "good_end" }, 
               { chance: 0.3, next: "neutral_end" }] },  
@@ -93,7 +93,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "uncertain", 
             text: "You're willing to replace it already?", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: "images/customer/customer-frustrated.png", 
             randomOutcomes: [
               { chance: 0.5, next: "good_end" }, 
               { chance: 0.5, next: "neutral_end" }] }, 
@@ -101,21 +101,21 @@ const scenarios = {
             character: "Customer", 
             emotion: "happy", 
             text: "Thank you for actually helping me solve it.", 
-            image: "/WasVisualNovel/images/customer/customer-happy.png", 
+            image: "images/customer/customer-happy.png", 
             ending: "Excellent Resolution", 
             learning: "Empathy combined with flexible problem solving increases customer trust and satisfaction." }, 
           neutral_end: { 
             character: "Customer", 
             emotion: "uncertain", 
             text: "I guess we'll see if that works...", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: "images/customer/customer-frustrated.png", 
             ending: "Partial Resolution", 
             learning: "Even correct solutions can feel unsatisfying if the customer still feels uncertain. Communication clarity matters." }, 
           bad_end: { 
             character: "Customer", 
             emotion: "angry", 
             text: "This is terrible support. I'm posting a complaint online.", 
-            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
+            image: "images/customer/customer-angry.jpg", 
             ending: "Customer Escalation", 
             learning: "Rigid policy-first responses can escalate emotional customers. Listening first often prevents escalation." } 
     }},
@@ -129,7 +129,7 @@ const scenarios = {
             character: "Rewards Officer", 
             emotion: "worried", 
             text: "I'm seeing a lot of complaints from users saying their rewards haven't been issued yet. The RMS dashboard shows several rewards stuck in pending status. What should we do first?", 
-            image: "/WasVisualNovel/images/rewards/rewards-worried.png", 
+            image: "images/rewards/rewards-worried.png", 
             choices: [
               { text: "Investigate RMS system logs", next: "checkLogs" }, 
               { text: "Post announcement to calm users", next: "informUsers" },
@@ -139,7 +139,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "focused", 
                     text: "After checking the RMS logs, I found that the reward issuance batch job failed two days ago. The queue stopped processing rewards. Should we escalate this?", 
-                    image: "/WasVisualNovel/images/rewards/rewards-worried.png", 
+                    image: "images/rewards/rewards-worried.png", 
                     choices: [
                     { text: "Escalate to technical team immediately", next: "goodEnding1" },
                     { text: "Manually issue the rewards ourselves", next: "neutralEnding1" },
@@ -149,7 +149,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "concerned", 
                     text: "We've posted a message telling users we're investigating the delay. Some users are calmer now, but we still don't know the root cause.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png",
+                    image: "images/community_manager/comm-manager-neutral.png",
                     choices: [
                     { text: "Investigate the RMS system now", next: "goodEnding2" },
                     { text: "Let community team reply to complaints individually", next: "neutralEnding2" },
@@ -159,7 +159,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "stressed", 
                     text: "Complaints doubled in the community channels. People are questioning if the rewards program is reliable.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     choices: [
                     { text: "Investigate the issue urgently now", next: "neutralEnding3" },
                     { text: "Hide or moderate complaint posts", next: "badEnding3" },
@@ -169,7 +169,7 @@ const scenarios = {
                     character: "Technical Team", 
                     emotion: "relieved", 
                     text: "The engineers restarted the failed reward service and cleared the queue. Rewards are now being issued gradually.", 
-                    image: "/WasVisualNovel/images/it/engineer.png",
+                    image: "images/it/engineer.png",
                     ending: "GOOD ENDING — System Fixed Quickly", 
                     learning: "Escalating technical issues quickly helps resolve problems efficiently and maintains user trust." 
               },
@@ -178,7 +178,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "tired", 
                     text: "We manually processed the pending rewards. Users received them, but it took hours and didn't solve the root issue.", 
-                    image: "/WasVisualNovel/images/rewards/rewards-sad.png", 
+                    image: "images/rewards/rewards-sad.png", 
                     ending: "NEUTRAL ENDING — Temporary Fix", 
                     learning: "Manual workarounds may help temporarily but identifying the root cause is critical." 
               },
@@ -187,7 +187,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "frustrated", 
                     text: "The automated batch failed again the next day. Now hundreds of users are complaining about missing rewards.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+                    image: "images/community_manager/comm-manager-sad.png",
                     ending: "BAD ENDING — Escalation Crisis", 
                     learning: "Delaying action when technical failures occur can significantly damage user trust." 
               },
@@ -196,7 +196,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "relieved", 
                     text: "After investigating, we discovered a failed reward job in the RMS. The technical team fixed it and rewards are being issued.", 
-                    image: "/WasVisualNovel/images/rewards/rewards-happy.png", 
+                    image: "images/rewards/rewards-happy.png", 
                     ending: "GOOD ENDING — Transparent Resolution", 
                     learning: "Communicating early while investigating helps maintain community trust." 
               },
@@ -205,7 +205,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "exhausted", 
                     text: "The team spent hours replying to users individually, but the system issue was only discovered later.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+                    image: "images/community_manager/comm-manager-sad.png",
                     ending: "NEUTRAL ENDING — Reactive Support", 
                     learning: "Handling complaints without diagnosing the root cause increases workload." 
               },
@@ -214,7 +214,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "disappointed", 
                     text: "Users became frustrated after hearing no updates for days. Many started doubting the rewards program.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     ending: "BAD ENDING — Lost Confidence", 
                     learning: "Delayed investigation after communication can lead to community distrust." 
               },
@@ -223,7 +223,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "stressed", 
                     text: "We eventually found the system issue and fixed it, but users were already frustrated from the delay.", 
-                    image: "/WasVisualNovel/images/rewards/rewards-worried.png", 
+                    image: "images/rewards/rewards-worried.png", 
                     ending: "NEUTRAL ENDING — Late Recovery", 
                     learning: "Acting late can still resolve issues but may already harm the community's perception." 
               },
@@ -232,7 +232,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "worried", 
                     text: "Moderating complaint posts only pushed the conversation to external channels where the situation escalated.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+                    image: "images/community_manager/comm-manager-sad.png",
                     ending: "BAD ENDING — Reputation Risk", 
                     learning: "Suppressing user concerns rarely solves the problem and may worsen trust issues." 
               },
@@ -241,7 +241,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "overwhelmed", 
                     text: "The backlog of rewards kept growing and leadership demanded an urgent investigation into the operational failure.", 
-                    image: "/WasVisualNovel/images/rewards/rewards-sad.png", 
+                    image: "images/rewards/rewards-sad.png", 
                     ending: "BAD ENDING — Operational Breakdown", 
                     learning: "Ignoring operational warning signs can lead to major service failures." 
               }
@@ -257,7 +257,7 @@ const scenarios = {
             character: "Technical Support", 
             emotion: "concerned", 
             text: "Team, something is wrong with the platform. Users are reporting that pages are loading slowly and some features like task submissions and rewards tracking are not working. This might be a platform issue.", 
-            image: "/WasVisualNovel/images/it/IT.png", 
+            image: "images/it/IT.png", 
             choices: [
             { text: "Check system monitoring dashboard and server status", next: "checkMonitoring" },
             { text: "Notify the IT team immediately", next: "notifyIT" },
@@ -268,7 +268,7 @@ const scenarios = {
                     character: "Technical Support", 
                     emotion: "focused", 
                     text: "I'm checking the monitoring tools now. CPU usage on one of the platform servers is unusually high and response times are increasing.", 
-                    image: "/WasVisualNovel/images/it/IT.png", 
+                    image: "images/it/IT.png", 
                     choices: [
                     { text: "Escalate findings to IT team with monitoring data", next: "goodEnding1" },
                     { text: "Restart the affected service to see if it helps", next: "neutralEnding1" },
@@ -279,7 +279,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "alert", 
                     text: "IT team has been notified about the platform slowdown. They're asking if we have more details about the issue or error patterns.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png",
+                    image: "images/community_manager/comm-manager-neutral.png",
                     choices: [
                     { text: "Gather logs and user reports to help IT diagnose", next: "goodEnding2" },
                     { text: "Ask IT to investigate without additional data", next: "neutralEnding2" },
@@ -290,7 +290,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "worried", 
                     text: "More reports are coming in. Users now say the dashboard sometimes shows errors and tasks cannot be submitted.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     choices: [
                     { text: "Investigate system health and logs immediately", next: "neutralEnding3" },
                     { text: "Tell users to refresh or try again later", next: "badEnding3" },
@@ -301,7 +301,7 @@ const scenarios = {
                     character: "IT Engineer", 
                     emotion: "relieved", 
                     text: "The monitoring data helped us quickly identify a misconfigured server process consuming too many resources. We fixed the configuration and restarted the service. Platform performance is back to normal.", 
-                    image: "/WasVisualNovel/images/it/engineer.png",
+                    image: "images/it/engineer.png",
                     ending: "GOOD ENDING — Issue Diagnosed Quickly", 
                     learning: "Monitoring tools and system metrics are essential for quickly diagnosing platform performance issues." 
                     },
@@ -310,7 +310,7 @@ const scenarios = {
                     character: "Technical Support", 
                     emotion: "uncertain", 
                     text: "Restarting the service helped temporarily, but the slowdown returned later because the root cause was not fully identified.", 
-                    image: "/WasVisualNovel/images/it/IT.png", 
+                    image: "images/it/IT.png", 
                     ending: "NEUTRAL ENDING — Temporary Stability", 
                     learning: "Restarting services can restore functionality temporarily but may not solve the underlying issue." 
                     },
@@ -319,7 +319,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "frustrated", 
                     text: "While we continued monitoring, the platform performance worsened and eventually caused partial downtime for several features.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+                    image: "images/community_manager/comm-manager-sad.png",
                     ending: "BAD ENDING — Platform Degradation", 
                     learning: "Ignoring warning signs in monitoring tools can lead to larger system failures." 
                     },
@@ -328,7 +328,7 @@ const scenarios = {
             character: "IT Engineer", 
                     emotion: "focused", 
                     text: "Thanks for the logs and user reports. We traced the issue to a database query overload affecting platform response time. We've optimized the query and stabilized the system.", 
-                    image: "/WasVisualNovel/images/it/engineer.png",
+                    image: "images/it/engineer.png",
                     ending: "GOOD ENDING — Collaborative Troubleshooting", 
                     learning: "Providing technical evidence helps IT teams diagnose and resolve platform issues faster." 
                     },
@@ -337,7 +337,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "tired", 
                     text: "IT eventually found the issue, but without initial data the investigation took much longer than necessary.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     ending: "NEUTRAL ENDING — Slow Resolution", 
                     learning: "Clear technical information accelerates troubleshooting and incident response." 
                     },
@@ -346,7 +346,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "worried", 
                     text: "Because we stopped monitoring after notifying IT, we failed to notice the issue spreading to other services on the platform.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     ending: "BAD ENDING — Escalating System Failure", 
                     learning: "Even after escalation, teams must continue monitoring platform health during incidents." 
                     },
@@ -355,7 +355,7 @@ const scenarios = {
                     character: "IT Engineer", 
                     emotion: "focused", 
                     text: "After investigating late, we discovered a memory leak affecting one of the platform services. It was fixed, but users experienced disruption for several hours.", 
-                    image: "/WasVisualNovel/images/it/engineer.png",
+                    image: "images/it/engineer.png",
                     ending: "NEUTRAL ENDING — Late Recovery", 
                     learning: "Delayed investigation can still resolve the problem but may impact the user experience." 
                     },
@@ -364,7 +364,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "disappointed", 
                     text: "Telling users to refresh did not solve the real problem. The platform continued failing and frustration grew among users.", 
-                    image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+                    image: "images/community_manager/comm-manager-sad.png",
                     ending: "BAD ENDING — User Frustration", 
                     learning: "Workarounds should not replace proper investigation during platform incidents." 
                     },
@@ -373,7 +373,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "overwhelmed", 
                     text: "The platform eventually crashed due to unresolved system overload, forcing emergency downtime and urgent intervention from IT leadership.", 
-                    image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+                    image: "images/pcc/pcc-sad.png",
                     ending: "BAD ENDING — Critical Platform Outage", 
                     learning: "Ignoring early warning signs in platform performance can lead to full system outages." 
                     }
@@ -389,7 +389,7 @@ const scenarios = {
         character: "Program Community Coordinator", 
         emotion: "worried", 
         text: "Team, several users are asking about their IT support tickets. Some tickets have been open for days without updates. The backlog seems to be growing in the system.", 
-        image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+        image: "images/pcc/pcc-neutral.png", 
         choices: [
         { text: "Review the ticketing system and backlog status", next: "reviewBacklog" },
         { text: "Send a message acknowledging the delays to users", next: "informUsers" },
@@ -401,7 +401,7 @@ const scenarios = {
             character: "Rewards Officer", 
             emotion: "focused", 
             text: "Looking at the ticketing dashboard, there are over 80 unresolved tickets. Many are related to platform login issues and reward verification errors.", 
-            image: "/WasVisualNovel/images/rewards/rewards-worried.png",
+            image: "images/rewards/rewards-worried.png",
             choices: [
             { text: "Prioritize critical tickets and escalate to IT manager", next: "goodEnding1" },
             { text: "Start responding to tickets one by one", next: "neutralEnding1" },
@@ -413,7 +413,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "alert", 
             text: "We've posted an update informing users that the IT team is reviewing the ticket backlog and responses may take longer than usual.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png",
+            image: "images/community_manager/comm-manager-neutral.png",
             choices: [
             { text: "Coordinate with IT to prioritize urgent tickets", next: "goodEnding2" },
             { text: "Let users keep submitting tickets for follow-ups", next: "neutralEnding2" },
@@ -425,7 +425,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "stressed", 
             text: "The backlog is getting worse. Some users are now submitting duplicate tickets because they haven't received responses.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             choices: [
             { text: "Audit the ticket queue and identify urgent cases", next: "neutralEnding3" },
             { text: "Close older tickets automatically", next: "badEnding3" },
@@ -437,7 +437,7 @@ const scenarios = {
             character: "IT Manager", 
             emotion: "relieved", 
             text: "Thanks for flagging the backlog. We've reassigned engineers to address the critical tickets first and implemented a priority queue.", 
-            image: "/WasVisualNovel/images/it/it-manager-neutral.png",
+            image: "images/it/it-manager-neutral.png",
             ending: "GOOD ENDING — Efficient Ticket Resolution", 
             learning: "Prioritizing and escalating urgent support tickets helps resolve issues faster and improves support efficiency." 
             },
@@ -446,7 +446,7 @@ const scenarios = {
             character: "Rewards Officer", 
             emotion: "tired", 
             text: "Responding to tickets individually helped reduce the backlog slightly, but the queue kept growing because the core issues were not prioritized.", 
-            image: "/WasVisualNovel/images/rewards/rewards-sad.png",
+            image: "images/rewards/rewards-sad.png",
             ending: "NEUTRAL ENDING — Slow Progress", 
             learning: "Handling tickets one by one may help temporarily but prioritization and coordination are essential." 
             },
@@ -455,7 +455,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "frustrated", 
             text: "Because the backlog was ignored, users started escalating their concerns through multiple channels and management demanded an urgent report.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Support Breakdown", 
             learning: "Ignoring a growing ticket backlog can lead to operational and reputational issues." 
             },
@@ -464,7 +464,7 @@ const scenarios = {
             character: "IT Engineer", 
             emotion: "focused", 
             text: "After coordinating with the support team, we identified the most common issues and deployed fixes while resolving high-priority tickets.", 
-            image: "/WasVisualNovel/images/it/engineer.png",
+            image: "images/it/engineer.png",
             ending: "GOOD ENDING — Coordinated Support Response", 
             learning: "Combining user communication with internal coordination ensures both transparency and faster problem resolution." 
             },
@@ -473,7 +473,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "concerned", 
             text: "Users continued submitting follow-ups, which created duplicate tickets and made the backlog harder to manage.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png",
+            image: "images/pcc/pcc-neutral.png",
             ending: "NEUTRAL ENDING — Ticket Overflow", 
             learning: "Without ticket management policies, duplicate submissions can overwhelm support teams." 
             },
@@ -482,7 +482,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "disappointed", 
             text: "Users became frustrated after receiving no updates beyond the initial announcement, leading to loss of confidence in the support process.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png",
+            image: "images/community_manager/comm-manager-neutral.png",
             ending: "BAD ENDING — Communication Failure", 
             learning: "Announcements must be followed by consistent updates during support delays." 
             },
@@ -491,7 +491,7 @@ const scenarios = {
             character: "IT Engineer", 
             emotion: "focused", 
             text: "After auditing the queue, several urgent cases were finally addressed. However, many users experienced long waiting times.", 
-            image: "/WasVisualNovel/images/it/engineer.png",
+            image: "images/it/engineer.png",
             ending: "NEUTRAL ENDING — Delayed Resolution", 
             learning: "Late intervention can still improve ticket management but may impact user satisfaction." 
             },
@@ -500,7 +500,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "worried", 
             text: "Automatically closing tickets caused users to reopen them and escalate complaints about unresolved issues.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Escalated Complaints", 
             learning: "Closing unresolved tickets without solutions damages trust in the support system." 
             },
@@ -509,7 +509,7 @@ const scenarios = {
             character: "Rewards Officer", 
             emotion: "overwhelmed", 
             text: "The backlog doubled and leadership required an emergency review of the support process due to poor response times.", 
-            image: "/WasVisualNovel/images/rewards/rewards-sad.png",
+            image: "images/rewards/rewards-sad.png",
             ending: "BAD ENDING — Critical Support Failure", 
             learning: "Ignoring ticket backlogs can quickly escalate into major operational problems." 
             }
@@ -525,7 +525,7 @@ const scenarios = {
         character: "Program Community Coordinator", 
         emotion: "concerned", 
         text: "Multiple operations tasks and reward approvals are delayed. Users are asking when their requests will be processed. The operations backlog is growing.", 
-        image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+        image: "images/pcc/pcc-neutral.png", 
         choices: [
         { text: "Review pending operations tasks and prioritize urgent ones", next: "reviewTasks" },
         { text: "Inform users about potential delays", next: "notifyUsers" },
@@ -537,7 +537,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "focused", 
             text: "I'm reviewing all pending tasks. Some reward approvals have been pending for days, others are time-sensitive.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+            image: "images/pcc/pcc-neutral.png", 
             choices: [
             { text: "Escalate high-priority tasks to Operations Manager", next: "goodEnding1" },
             { text: "Assign tasks evenly without prioritization", next: "neutralEnding1" },
@@ -549,7 +549,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "alert", 
             text: "I sent a notice: 'Operations is experiencing delays. Requests will be processed as soon as possible.' Users want clearer timelines.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+            image: "images/pcc/pcc-neutral.png", 
             choices: [
             { text: "Coordinate with Operations Manager to prioritize tasks and update users", next: "goodEnding2" },
             { text: "Let Operations handle the backlog without further updates", next: "neutralEnding2" },
@@ -561,7 +561,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "stressed", 
             text: "The backlog is growing. Users are submitting multiple follow-ups, creating confusion and more pressure.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             choices: [
             { text: "Audit backlog and escalate urgent tasks immediately", next: "neutralEnding3" },
             { text: "Ignore follow-ups and hope Operations catch up", next: "badEnding3" },
@@ -573,7 +573,7 @@ const scenarios = {
             character: "Operations Manager", 
             emotion: "relieved", 
             text: "Critical tasks were processed first. Users received rewards and approvals on time, and backlog was cleared.", 
-            image: "/WasVisualNovel/images/operations/om-happy.png",
+            image: "images/operations/om-happy.png",
             ending: "GOOD ENDING — Fast Escalation and Prioritization", 
             learning: "Prioritizing and escalating urgent operations tasks prevents user frustration and backlog growth." 
             },
@@ -582,7 +582,7 @@ const scenarios = {
             character: "Operations Team", 
             emotion: "busy", 
             text: "Tasks were evenly assigned, but urgent requests were delayed. Backlog cleared eventually, but users were frustrated.", 
-            image: "/WasVisualNovel/images/operations/busy.png",
+            image: "images/operations/busy.png",
             ending: "NEUTRAL ENDING — Moderate Delay", 
             learning: "Even task distribution without prioritization may delay high-impact tasks." 
             },
@@ -591,7 +591,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "frustrated", 
             text: "Postponing escalation caused critical tasks to remain unprocessed. Users flooded support channels.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — Escalation Failure", 
             learning: "Delaying escalation in operations leads to backlog accumulation and user dissatisfaction." 
             },
@@ -600,7 +600,7 @@ const scenarios = {
             character: "Operations Manager", 
             emotion: "focused", 
             text: "Coordination allowed urgent tasks to be processed first. Users were updated, maintaining trust.", 
-            image: "/WasVisualNovel/images/operations/om-happy.png",
+            image: "images/operations/om-happy.png",
             ending: "GOOD ENDING — Transparent Coordination", 
             learning: "Combining communication with prioritization ensures efficiency and user satisfaction." 
             },
@@ -609,7 +609,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "tired", 
             text: "Operations processed tasks eventually, but users experienced longer waits and multiple follow-ups.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "NEUTRAL ENDING — Delayed Resolution", 
             learning: "Without active coordination, delays may persist even if tasks are eventually completed." 
             },
@@ -618,7 +618,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "worried", 
             text: "Stopping updates caused users to lose confidence and escalate complaints externally.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — User Frustration", 
             learning: "Failing to monitor and update users damages trust." 
             },
@@ -627,7 +627,7 @@ const scenarios = {
             character: "Operations Team", 
             emotion: "focused", 
             text: "Late escalation allowed urgent tasks to be processed, but users experienced delays and frustration.", 
-            image: "/WasVisualNovel/images/operations/busy.png",
+            image: "images/operations/busy.png",
             ending: "NEUTRAL ENDING — Late Recovery", 
             learning: "Late intervention resolves tasks but may negatively affect user satisfaction." 
             },
@@ -636,7 +636,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "disappointed", 
             text: "Ignoring follow-ups led to duplicate tasks and unresolved requests.", 
-            image: "/WasVisualNovel/images/operations/om-sad.png",
+            image: "images/operations/om-sad.png",
             ending: "BAD ENDING — Backlog Escalation", 
             learning: "Ignoring operational backlog or follow-ups compounds delays." 
             },
@@ -645,7 +645,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "overwhelmed", 
             text: "Backlog continued growing unchecked, forcing management intervention.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — Critical Operations Failure", 
             learning: "Active monitoring and escalation prevent operational collapse." 
             }
@@ -661,7 +661,7 @@ const scenarios = {
         character: "Program Community Coordinator", 
         emotion: "concerned", 
         text: "The Creative Director rejected the poster request I submitted for the program campaign. They said the brief was unclear and the design direction doesn't align with the brand. But the campaign deadline is approaching and the community is waiting for the announcement.", 
-        image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+        image: "images/pcc/pcc-neutral.png", 
         choices: [
         { text: "Clarify the design brief and campaign objectives with the Creative Director", next: "clarifyBrief" },
         { text: "Ask the Creative Director to revise the design urgently", next: "urgentRequest" },
@@ -673,7 +673,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "focused", 
             text: "Thanks for clarifying the campaign goals. The previous brief lacked details about audience, message hierarchy, and design guidelines.", 
-            image: "/WasVisualNovel/images/creative/director-happy.png", 
+            image: "images/creative/director-happy.png", 
             choices: [
             { text: "Collaborate on a revised design brief together", next: "goodEnding1" },
             { text: "Provide minimal additional details and request the poster again", next: "neutralEnding1" },
@@ -685,7 +685,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "frustrated", 
             text: "The design team needs proper direction before producing visual materials. Rushing the request without clear guidance may result in poor quality.", 
-            image: "/WasVisualNovel/images/creative/director-sad.png",
+            image: "images/creative/director-sad.png",
             choices: [
             { text: "Work with the Creative Director to define priorities and timeline", next: "goodEnding2" },
             { text: "Ask for a quick draft even if the brief is incomplete", next: "neutralEnding2" },
@@ -697,7 +697,7 @@ const scenarios = {
             character: "Designer", 
             emotion: "uneasy", 
             text: "I received the request, but normally all creative work must go through the Creative Director for approval.", 
-            image: "/WasVisualNovel/images/creative/designer-sad.png",
+            image: "images/creative/designer-sad.png",
             choices: [
             { text: "Return to the Creative Director to align properly", next: "neutralEnding3" },
             { text: "Ask the designer to finish the poster quietly", next: "badEnding3" },
@@ -709,7 +709,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "relieved", 
             text: "With the updated brief and clear messaging, the design team produced a strong poster aligned with the campaign goals.", 
-            image: "/WasVisualNovel/images/creative/director-happy.png", 
+            image: "images/creative/director-happy.png", 
             ending: "GOOD ENDING — Effective Creative Collaboration", 
             learning: "Clear design briefs and collaboration between PCC and Creative teams lead to better campaign results." 
             },
@@ -718,7 +718,7 @@ const scenarios = {
             character: "Designer", 
             emotion: "uncertain", 
             text: "The poster was produced but required multiple revisions because the direction remained unclear.", 
-            image: "/WasVisualNovel/images/creative/designer-neutral.png", 
+            image: "images/creative/designer-neutral.png", 
             ending: "NEUTRAL ENDING — Multiple Revisions", 
             learning: "Incomplete briefs often result in repeated design revisions and slower production." 
             },
@@ -727,7 +727,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "frustrated", 
             text: "Without a clear brief, the creative team paused the request to avoid producing misaligned materials.", 
-            image: "/WasVisualNovel/images/creative/director-sad.png",
+            image: "images/creative/director-sad.png",
             ending: "BAD ENDING — Campaign Delay", 
             learning: "Creative teams need clear direction to produce effective materials." 
             },
@@ -736,7 +736,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "focused", 
             text: "After aligning priorities and timeline, the design team produced a campaign-ready poster on schedule.", 
-            image: "/WasVisualNovel/images/creative/director-happy.png", 
+            image: "images/creative/director-happy.png", 
             ending: "GOOD ENDING — Coordinated Campaign Delivery", 
             learning: "Proper communication between operations and creative teams ensures both quality and timely delivery." 
             },
@@ -745,7 +745,7 @@ const scenarios = {
             character: "Designer", 
             emotion: "busy", 
             text: "A quick draft was produced but required significant adjustments later.", 
-            image: "/WasVisualNovel/images/creative/designer-sad.png",
+            image: "images/creative/designer-sad.png",
             ending: "NEUTRAL ENDING — Draft Rework", 
             learning: "Quick drafts without direction can help temporarily but may increase revision workload." 
             },
@@ -754,7 +754,7 @@ const scenarios = {
             character: "HR Manager", 
             emotion: "concerned", 
             text: "Escalating prematurely created unnecessary tension between departments.", 
-            image: "/WasVisualNovel/images/hr/hr-sad.png",
+            image: "images/hr/hr-sad.png",
             ending: "BAD ENDING — Department Conflict", 
             learning: "Operational disagreements should first be addressed through direct collaboration." 
             },
@@ -763,7 +763,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "calm", 
             text: "Thanks for aligning with the proper workflow. Let's review the request together.", 
-            image: "/WasVisualNovel/images/creative/director-neutral.png",
+            image: "images/creative/director-neutral.png",
             ending: "NEUTRAL ENDING — Workflow Restored", 
             learning: "Following established creative processes prevents confusion and delays." 
             },
@@ -772,7 +772,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "frustrated", 
             text: "Bypassing approval caused confusion and forced the design to be redone.", 
-            image: "/WasVisualNovel/images/creative/director-sad.png",
+            image: "images/creative/director-sad.png",
             ending: "BAD ENDING — Design Rejected", 
             learning: "Ignoring approval workflows can lead to wasted effort and conflict." 
             },
@@ -781,7 +781,7 @@ const scenarios = {
             character: "Creative Director", 
             emotion: "angry", 
             text: "Ignoring the creative approval process caused a serious internal conflict between departments.", 
-            image: "/WasVisualNovel/images/creative/director-sad.png",
+            image: "images/creative/director-sad.png",
             ending: "BAD ENDING — Workflow Breakdown", 
             learning: "Respecting creative leadership and workflow ensures efficient collaboration." 
             }
@@ -797,7 +797,7 @@ const scenarios = {
         character: "Community Manager", 
         emotion: "concerned", 
         text: "I've noticed tension between two team members during operations coordination. Discussions about delayed tasks have turned into arguments in team channels, and it's starting to affect productivity.", 
-        image:  "/WasVisualNovel/images/community_manager/comm-manager-neutral.png", 
+        image:  "images/community_manager/comm-manager-neutral.png", 
         choices: [
         { text: "Speak privately with both team members to understand the issue", next: "investigateConflict" },
         { text: "Escalate the situation directly to HR", next: "directHR" },
@@ -809,7 +809,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "focused", 
             text: "After speaking with both team members separately, it appears the disagreement stems from unclear task responsibilities and communication misunderstandings.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png", 
+            image: "images/community_manager/comm-manager-neutral.png", 
             choices: [
             { text: "Mediate the discussion and clarify responsibilities", next: "neutralEnding1" },
             { text: "Document the issue and escalate it to HR for guidance", next: "goodEnding1" },
@@ -821,7 +821,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "alert", 
             text: "I've reported the situation to HR and explained how the conflict is affecting the team's operations.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-neutral.png", 
+            image: "images/community_manager/comm-manager-neutral.png", 
             choices: [
             { text: "Provide HR with documented evidence and communication logs", next: "goodEnding2" },
             { text: "Give HR only a brief summary without details", next: "neutralEnding2" },
@@ -833,7 +833,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "uncertain", 
             text: "The conflict continues to grow. Other team members are starting to feel uncomfortable during discussions.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             choices: [
             { text: "Address the issue now and escalate to HR", next: "neutralEnding3" },
             { text: "Warn the team to stop arguing publicly", next: "badEnding3" },
@@ -845,7 +845,7 @@ const scenarios = {
             character: "HR Manager", 
             emotion: "supportive", 
             text: "HR reviewed the documented concerns and helped mediate the conflict, establishing clearer communication guidelines and responsibilities.", 
-            image: "/WasVisualNovel/images/hr/hr-happy.png",
+            image: "images/hr/hr-happy.png",
             ending: "GOOD ENDING — Healthy Team Resolution", 
             learning: "Documenting concerns and involving HR when necessary promotes professional conflict resolution." 
             },
@@ -854,7 +854,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "relieved", 
             text: "The discussion helped clarify some misunderstandings, but the underlying tension between team members still exists.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-happy.png",
+            image: "images/community_manager/comm-manager-happy.png",
             ending: "NEUTRAL ENDING — Temporary Resolution", 
             learning: "Mediation can help resolve issues, but persistent conflicts may still require HR guidance." 
             },
@@ -863,7 +863,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "frustrated", 
             text: "Without guidance, the disagreement escalated further and disrupted team collaboration.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Escalating Workplace Conflict", 
             learning: "Serious internal conflicts should not be left unresolved without proper support." 
             },
@@ -872,7 +872,7 @@ const scenarios = {
             character: "HR Manager", 
             emotion: "focused", 
             text: "With detailed documentation, HR quickly understood the situation and facilitated a structured conflict resolution process.", 
-            image: "/WasVisualNovel/images/hr/hr-happy.png",
+            image: "images/hr/hr-happy.png",
             ending: "GOOD ENDING — Effective HR Intervention", 
             learning: "Providing clear documentation helps HR resolve workplace conflicts efficiently." 
             },
@@ -881,7 +881,7 @@ const scenarios = {
             character: "HR Manager", 
             emotion: "concerned", 
             text: "HR needed additional information before taking action, delaying the resolution process.", 
-            image: "/WasVisualNovel/images/hr/hr-neutral.png",
+            image: "images/hr/hr-neutral.png",
             ending: "NEUTRAL ENDING — Delayed HR Response", 
             learning: "Escalating conflicts without context can slow HR’s ability to help." 
             },
@@ -890,7 +890,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "worried", 
             text: "Because the situation wasn't monitored after reporting, the conflict continued affecting team productivity.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Ongoing Workplace Tension", 
             learning: "Escalation should be followed by active monitoring and support." 
             },
@@ -899,7 +899,7 @@ const scenarios = {
             character: "HR Manager", 
             emotion: "focused", 
             text: "HR eventually stepped in to mediate the issue, but the delay allowed tension to affect team morale.", 
-            image: "/WasVisualNovel/images/hr/hr-neutral.png",
+            image: "images/hr/hr-neutral.png",
             ending: "NEUTRAL ENDING — Late Intervention", 
             learning: "Addressing internal conflicts early prevents larger workplace disruptions." 
             },
@@ -908,7 +908,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "disappointed", 
             text: "Public warnings did not resolve the issue, and team members felt uncomfortable sharing concerns.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Poor Team Morale", 
             learning: "Suppressing conflict without addressing root causes can harm team morale." 
             },
@@ -917,7 +917,7 @@ const scenarios = {
             character: "Community Manager", 
             emotion: "overwhelmed", 
             text: "Ignoring the conflict allowed it to escalate into a serious workplace dispute requiring formal HR investigation.", 
-            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
+            image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Formal HR Disciplinary Case", 
             learning: "Unresolved internal conflicts can escalate into serious HR cases if ignored." 
             }
@@ -933,7 +933,7 @@ const scenarios = {
         character: "Program Community Coordinator", 
         emotion: "concerned", 
         text: "Several users reported receiving strange login alerts and suspicious emails asking them to verify their accounts. Some also noticed unusual activity in their dashboards. This could be a cybersecurity issue.", 
-        image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+        image: "images/pcc/pcc-neutral.png", 
         choices: [
         { text: "Collect reports and escalate to IT Security immediately", next: "escalateSecurity" },
         { text: "Warn users about possible phishing attempts", next: "warnUsers" },
@@ -945,7 +945,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "focused", 
             text: "I gathered screenshots of suspicious emails and login alerts. I'm preparing an internal ticket for the IT Security team with detailed evidence.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png",
+            image: "images/pcc/pcc-neutral.png",
             choices: [
             { text: "Escalate the incident as a potential phishing attack", next: "goodEnding1" },
             { text: "Submit the ticket without detailed evidence", next: "neutralEnding1" },
@@ -957,7 +957,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "alert", 
             text: "I posted a warning reminding users not to click suspicious links and to report unusual login alerts. Users are thankful but concerned about platform safety.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png",
+            image: "images/pcc/pcc-neutral.png",
             choices: [
             { text: "Coordinate with IT Security while continuing to monitor", next: "goodEnding2" },
             { text: "Let users report issues individually to IT", next: "neutralEnding2" },
@@ -969,7 +969,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "uncertain", 
             text: "More reports are coming in. Some users claim their accounts attempted logins from unfamiliar locations.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             choices: [
             { text: "Escalate the situation to IT Security immediately", next: "neutralEnding3" },
             { text: "Ignore reports assuming they are false alarms", next: "badEnding3" },
@@ -981,7 +981,7 @@ const scenarios = {
             character: "IT Security Analyst", 
             emotion: "focused", 
             text: "The evidence confirmed a phishing campaign targeting platform users. We blocked malicious domains, secured affected accounts, and implemented additional monitoring.", 
-            image: "/WasVisualNovel/images/it/analyst-happy.png",
+            image: "images/it/analyst-happy.png",
             ending: "GOOD ENDING — Threat Contained Quickly", 
             learning: "Prompt escalation with evidence helps security teams contain threats before they escalate." 
             },
@@ -990,7 +990,7 @@ const scenarios = {
             character: "IT Security Analyst", 
             emotion: "busy", 
             text: "The ticket was reviewed, but limited details delayed investigation. The phishing attempt was eventually blocked after several reports.", 
-            image: "/WasVisualNovel/images/it/analyst-neutral.png",
+            image: "images/it/analyst-neutral.png",
             ending: "NEUTRAL ENDING — Delayed Investigation", 
             learning: "Providing detailed evidence during escalation accelerates cybersecurity response." 
             },
@@ -999,7 +999,7 @@ const scenarios = {
             character: "IT Security Analyst", 
             emotion: "frustrated", 
             text: "Because the threat was reported late, several users had already interacted with the malicious links before the attack was stopped.", 
-            image: "/WasVisualNovel/images/it/analyst-sad.png",
+            image: "images/it/analyst-sad.png",
             ending: "BAD ENDING — Compromised Accounts", 
             learning: "Delaying escalation during potential cybersecurity threats increases the risk of user compromise." 
             },
@@ -1008,7 +1008,7 @@ const scenarios = {
             character: "IT Security Analyst", 
             emotion: "relieved", 
             text: "By warning users and coordinating with IT Security, the team quickly identified and blocked the phishing source before major damage occurred.", 
-            image: "/WasVisualNovel/images/it/analyst-happy.png",
+            image: "images/it/analyst-happy.png",
             ending: "GOOD ENDING — Preventive Action", 
             learning: "User awareness combined with security escalation is an effective defense against cyber threats." 
             },
@@ -1017,7 +1017,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "concerned", 
             text: "Users submitted multiple reports individually, which slowed down IT Security’s investigation.", 
-            image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
+            image: "images/pcc/pcc-neutral.png", 
             ending: "NEUTRAL ENDING — Fragmented Reports", 
             learning: "Centralized escalation through Program Community Coordinator helps security teams identify threats faster." 
             },
@@ -1026,7 +1026,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "worried", 
             text: "Without further monitoring, the phishing attack continued targeting users before IT noticed the pattern.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — Uncontrolled Phishing Campaign", 
             learning: "Warnings alone are not enough—continuous monitoring and escalation are required." 
             },
@@ -1035,7 +1035,7 @@ const scenarios = {
             character: "IT Security Analyst", 
             emotion: "focused", 
             text: "Late escalation allowed the security team to mitigate the threat, but several users experienced suspicious login attempts.", 
-            image: "/WasVisualNovel/images/it/analyst-neutral.png",
+            image: "images/it/analyst-neutral.png",
             ending: "NEUTRAL ENDING — Late Mitigation", 
             learning: "Early escalation is key in cybersecurity incidents." 
             },
@@ -1044,7 +1044,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "shocked", 
             text: "Ignoring the reports allowed attackers to continue targeting users, resulting in compromised accounts.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — Security Breach", 
             learning: "Cybersecurity warnings should always be taken seriously and escalated immediately." 
             },
@@ -1053,7 +1053,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "overwhelmed", 
             text: "The threat escalated into a full security incident affecting multiple user accounts, forcing emergency intervention from the IT Security team.", 
-            image: "/WasVisualNovel/images/pcc/pcc-sad.png",
+            image: "images/pcc/pcc-sad.png",
             ending: "BAD ENDING — Major Security Incident", 
             learning: "Failing to act quickly during potential cyber threats can lead to large-scale security breaches." 
             }
@@ -1362,7 +1362,7 @@ const startGame = () => {
 
     
   
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-cover bg-center " style={{ backgroundImage: "url('/WasVisualNovel/images/all.png')" }}>
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-cover bg-center " style={{ backgroundImage: "url('images/all.png')" }}>
   {[...Array(30)].map((_, i) => (
     <div
       key={i}
@@ -1374,13 +1374,13 @@ const startGame = () => {
     />
   ))}
            
-      <audio ref={menuBgmRef} src="/WasVisualNovel/sfx/menu_start.mp3" preload="auto"/>
+      <audio ref={menuBgmRef} src="sfx/menu_start.mp3" preload="auto"/>
       <audio ref={menuBtn} src="sfx/btn_hover.mp3" preload="auto"/>      
             
       <div className="p-6 space-y-4 absolute top-0 left-0 w-screen h-full overflow-y-auto z-20 ">
        
         <div className="p-6 space-y-4 absolute right-0 top-0 h-full w-3/4 z-20 relative z-10 mx-auto">
-        <img src="/WasVisualNovel/images/wellatsea-visual-novel.png" width="500" className="mx-auto block" />
+        <img src="images/wellatsea-visual-novel.png" width="500" className="mx-auto block" />
         <h1 className="text-3xl font-bold text-center text-white" style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.7)" }}>WellAtSea Visual Novel Simulator</h1>
         <p className="text-2x1 text-center font-bold" style={{ textShadow: "1px 1px 6px rgba(0,0,0,1)" }}>Select a scenario:</p>
         {Object.entries(scenarios).map(([key, s]) => (
@@ -1406,13 +1406,12 @@ const startGame = () => {
 
   <div className="w-full h-screen flex items-center justify-center bg-black text-white"> 
     <div className="w-full h-screen flex flex-col items-center justify-center bg-black text-white text-center">
-      <audio ref={menuBgmRef} src="/WasVisualNovel/sfx/scenetitle.mp3" preload="auto" autoPlay/>
+      <audio ref={menuBgmRef} src="sfx/scenetitle.mp3" preload="auto" autoPlay/>
       <h1 className="text-4xl font-bold mb-4 text-white">{scenario.title}</h1>
       <p className="text-gray-300 mb-8">Prepare to handle this situation.</p>
       <button
         className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded"
         onClick={() => {
-          playClick();
           setNode(scenario.start);
           setScreen("game");
         }}
@@ -1439,7 +1438,7 @@ if (!current) return null;
           🔇 Music Off
         </button>
     <audio ref={bgmRef} />
-    <audio ref={clickSfx} src="/audio/click.mp3" preload="auto" />
+    <audio ref={clickSfx} src="sfx/click.mp3" preload="auto" />
 
     {current.image && (
       <motion.img
