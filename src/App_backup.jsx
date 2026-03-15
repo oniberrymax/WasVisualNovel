@@ -1,5 +1,45 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import bgLogo from "./assets/images/wellatsea-visual-novel.png";
+import bgMenu from "./assets/images/all.png";
+import scenetitle from "./assets/sfx/scenetitle.mp3";
+import menuStart from "./assets/sfx/menu_start.mp3";
+import btnHover from "./assets/sfx/btn_hover.mp3";
+import agent_annoyed  from "./assets/images/agent/agent-annoyed.png";
+import agent_calm  from "./assets/images/agent/agent-calm.png";
+import customer_annoyed  from "./assets/images/customer/customer-annoyed.png";
+import customer_frustrated  from "./assets/images/customer/customer-frustrated.png";
+import customer_angry  from "./assets/images/customer/customer-angry.jpg";
+import rewards_happy  from "./assets/images/rewards/rewards-happy.png";
+import rewards_worried  from "./assets/images/rewards/rewards-worried.png";
+import rewards_sad  from "./assets/images/rewards/rewards-sad.png";
+import comm_manager_sad  from "./assets/images/community_manager/comm-manager-sad.png";
+import comm_manager_happy  from "./assets/images/community_manager/comm-manager-happy.png";
+import comm_manager_neutral  from "./assets/images/community_manager/comm-manager-neutral.png";
+import director_happy  from "./assets/images/creative/director-happy.png";
+import director_neutral  from "./assets/images/creative/director-neutral.png";
+import director_sad  from "./assets/images/creative/director-sad.png";
+import designer_happy  from "./assets/images/creative/designer-happy.png";
+import designer_neutral  from "./assets/images/creative/designer-neutral.png";
+import designer_sad  from "./assets/images/creative/designer-sad.png";
+import customer_happy  from "./assets/images/customer/customer-happy.png";
+import hr_happy  from "./assets/images/hr/hr-happy.png";
+import hr_neutral  from "./assets/images/hr/hr-neutral.png";
+import hr_sad  from "./assets/images/hr/hr-sad.png";
+import analyst_happy  from "./assets/images/it/analyst-happy.png";
+import analyst_neutral  from "./assets/images/it/analyst-neutral.png";
+import analyst_sad  from "./assets/images/it/analyst-sad.png";
+import engineer  from "./assets/images/it/engineer.png";
+import techsupport  from "./assets/images/it/IT.png";
+import it_manager  from "./assets/images/it/it-manager-neutral.png";
+import om_happy  from "./assets/images/operations/om-happy.png";
+import om_neutral  from "./assets/images/operations/om-neutral.png";
+import om_sad  from "./assets/images/operations/om-sad.png";
+import om_busy  from "./assets/images/operations/busy.png";
+import pcc_happy  from "./assets/images/pcc/pcc-happy.png";
+import pcc_neutral  from "./assets/images/pcc/pcc-neutral.png";
+import pcc_sad  from "./assets/images/pcc/pcc-sad.png";
+
 
 
 // ======================================
@@ -18,7 +58,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "angry", 
             text: "I bought your device two days ago and it already stopped working. I'm extremely disappointed.", 
-            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
+            image: customer_angry, 
             choices: [
               { text: "Apologize and ask questions", next: "investigate_support" }, 
               { text: "Request receipt first", next: "policy_support" }] }, 
@@ -26,28 +66,28 @@ const scenarios = {
             character: "Support Agent", 
             emotion: "calm", 
             text: "I understand your frustration. Can you tell me exactly what happened so we can fix it quickly?", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: agent_calm, 
             choices: [
               { text: "Next", next: "investigate" }] },
           policy_support: { 
             character: "Support Agent", 
             emotion: "calm", 
             text: "I apologize if that feels inconvenient. Our store policy requires us to check the receipt first before we can provide support like returns, replacements, or repairs. It helps us confirm the purchase details and make sure we assist you properly.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: agent_calm, 
             choices: [
                { text: "Next", next: "policy" } ] }, 
           policy_support2: { 
             character: "Support Agent", 
             emotion: "calm", 
             text: "I completely understand how frustrating it can be when an item isn’t working and you’re trying to get help. I truly want to assist you with this. However, our store policy requires us to verify the receipt first before we can proceed with checking the item or providing support.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: agent_calm, 
             choices: [
                { text: "Next", next: "customer_receipt" } ] }, 
           policy: { 
             character: "Customer", 
             emotion: "annoyed", 
             text: "So before even helping me you want paperwork?", 
-            image: "/WasVisualNovel/images/customer/customer-angry.png", 
+            image: customer_angry, 
             choices: [
               { text: "Explain policy calmly", next: "policy_support2" }, 
               { text: "Double down on policy", next: "double_down_policy" }] }, 
@@ -55,7 +95,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "calm", 
             text: "Oh, I see. I might have it in my bag. Let me check it... Here you go.", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: customer_frustrated, 
             choices: [
               { text: "Get the gadget and investigate", next: "investigate_support" }, 
               { text: "Keep him in que even the official receipt has presented", next: "bad_end" }] }, 
@@ -63,21 +103,21 @@ const scenarios = {
             character: "Customer", 
             emotion: "calm", 
             text: "Thank you for looking and providing the receipt. We have verified your purchase. Can tell me exactly what happened so we can fix it quickly?",
-            image: "/WasVisualNovel/images/customer/customer-angry.png",
+            image: customer_angry,
             choices: [
               { text: "Get the gadget and investigate", next: "investigate" } ] },
           double_down_policy: { 
             character: "Support Agent", 
             emotion: "angry", 
             text: "If you don't have it then I can’t help you. It doesn’t matter where you bought it. No receipt, no support. That’s the rule!", 
-            image: "/WasVisualNovel/images/agent/agent-annoyed.png", 
+            image: agent_annoyed, 
             choices: [
               { text: "Next", next: "bad_end" }] },      
           investigate: { 
             character: "Customer", 
             emotion: "frustrated", 
             text: "It stopped powering on completely. I charged it overnight.", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: customer_frustrated, 
             choices: [
               { text: "Walk through troubleshooting", next: "diagnose" }, 
               { text: "Offer replacement immediately", next: "replacement" }] }, 
@@ -85,7 +125,7 @@ const scenarios = {
             character: "Support Agent", 
             emotion: "calm", 
             text: "Let's try a quick reset process together.", 
-            image: "/WasVisualNovel/images/agent/agent-calm.png", 
+            image: agent_calm, 
             randomOutcomes: [
               { chance: 0.4, next: "good_end" }, 
               { chance: 0.3, next: "neutral_end" }] },  
@@ -93,7 +133,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "uncertain", 
             text: "You're willing to replace it already?", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: customer_frustrated, 
             randomOutcomes: [
               { chance: 0.5, next: "good_end" }, 
               { chance: 0.5, next: "neutral_end" }] }, 
@@ -101,21 +141,21 @@ const scenarios = {
             character: "Customer", 
             emotion: "happy", 
             text: "Thank you for actually helping me solve it.", 
-            image: "/WasVisualNovel/images/customer/customer-happy.png", 
+            image: customer_happy, 
             ending: "Excellent Resolution", 
             learning: "Empathy combined with flexible problem solving increases customer trust and satisfaction." }, 
           neutral_end: { 
             character: "Customer", 
             emotion: "uncertain", 
             text: "I guess we'll see if that works...", 
-            image: "/WasVisualNovel/images/customer/customer-frustrated.png", 
+            image: customer_frustrated, 
             ending: "Partial Resolution", 
             learning: "Even correct solutions can feel unsatisfying if the customer still feels uncertain. Communication clarity matters." }, 
           bad_end: { 
             character: "Customer", 
             emotion: "angry", 
             text: "This is terrible support. I'm posting a complaint online.", 
-            image: "/WasVisualNovel/images/customer/customer-angry.png", 
+            image: customer_angry, 
             ending: "Customer Escalation", 
             learning: "Rigid policy-first responses can escalate emotional customers. Listening first often prevents escalation." } 
     }},
@@ -129,7 +169,7 @@ const scenarios = {
             character: "Rewards Officer", 
             emotion: "worried", 
             text: "I'm seeing a lot of complaints from users saying their rewards haven't been issued yet. The RMS dashboard shows several rewards stuck in pending status. What should we do first?", 
-            image: "/images/rewards/rewards-worried.png", 
+            image: {rewards_worried}, 
             choices: [
               { text: "Investigate RMS system logs", next: "checkLogs" }, 
               { text: "Post announcement to calm users", next: "informUsers" },
@@ -139,7 +179,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "focused", 
                     text: "After checking the RMS logs, I found that the reward issuance batch job failed two days ago. The queue stopped processing rewards. Should we escalate this?", 
-                    image: "/images/rewards/rewards-worried.png", 
+                    image: {rewards_worried}, 
                     choices: [
                     { text: "Escalate to technical team immediately", next: "goodEnding1" },
                     { text: "Manually issue the rewards ourselves", next: "neutralEnding1" },
@@ -149,7 +189,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "concerned", 
                     text: "We've posted a message telling users we're investigating the delay. Some users are calmer now, but we still don't know the root cause.", 
-                    image: "/images/community_manager/comm-manager-neutral.png",
+                    image: {comm_manager_neutral},
                     choices: [
                     { text: "Investigate the RMS system now", next: "goodEnding2" },
                     { text: "Let community team reply to complaints individually", next: "neutralEnding2" },
@@ -159,7 +199,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "stressed", 
                     text: "Complaints doubled in the community channels. People are questioning if the rewards program is reliable.", 
-                    image: "/images/pcc/pcc-sad.png",
+                    image: {pcc_sad},
                     choices: [
                     { text: "Investigate the issue urgently now", next: "neutralEnding3" },
                     { text: "Hide or moderate complaint posts", next: "badEnding3" },
@@ -169,7 +209,7 @@ const scenarios = {
                     character: "Technical Team", 
                     emotion: "relieved", 
                     text: "The engineers restarted the failed reward service and cleared the queue. Rewards are now being issued gradually.", 
-                    image: "/images/it/engineer.png",
+                    image: {engineer},
                     ending: "GOOD ENDING — System Fixed Quickly", 
                     learning: "Escalating technical issues quickly helps resolve problems efficiently and maintains user trust." 
               },
@@ -178,7 +218,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "tired", 
                     text: "We manually processed the pending rewards. Users received them, but it took hours and didn't solve the root issue.", 
-                    image: "/images/rewards/rewards-sad.png", 
+                    image: {rewards_sad}, 
                     ending: "NEUTRAL ENDING — Temporary Fix", 
                     learning: "Manual workarounds may help temporarily but identifying the root cause is critical." 
               },
@@ -187,7 +227,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "frustrated", 
                     text: "The automated batch failed again the next day. Now hundreds of users are complaining about missing rewards.", 
-                    image: "/images/community_manager/comm-manager-sad.png",
+                    image: {comm_manager_sad},
                     ending: "BAD ENDING — Escalation Crisis", 
                     learning: "Delaying action when technical failures occur can significantly damage user trust." 
               },
@@ -196,7 +236,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "relieved", 
                     text: "After investigating, we discovered a failed reward job in the RMS. The technical team fixed it and rewards are being issued.", 
-                    image: "/images/rewards/rewards-happy.png", 
+                    image: {rewards_happy}, 
                     ending: "GOOD ENDING — Transparent Resolution", 
                     learning: "Communicating early while investigating helps maintain community trust." 
               },
@@ -205,7 +245,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "exhausted", 
                     text: "The team spent hours replying to users individually, but the system issue was only discovered later.", 
-                    image: "/images/community_manager/comm-manager-sad.png",
+                    image: {comm_manager_sad},
                     ending: "NEUTRAL ENDING — Reactive Support", 
                     learning: "Handling complaints without diagnosing the root cause increases workload." 
               },
@@ -214,7 +254,7 @@ const scenarios = {
                     character: "Program Community Coordinator", 
                     emotion: "disappointed", 
                     text: "Users became frustrated after hearing no updates for days. Many started doubting the rewards program.", 
-                    image: "/images/pcc/pcc-sad.png",
+                    image: {pcc_sad},
                     ending: "BAD ENDING — Lost Confidence", 
                     learning: "Delayed investigation after communication can lead to community distrust." 
               },
@@ -223,7 +263,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "stressed", 
                     text: "We eventually found the system issue and fixed it, but users were already frustrated from the delay.", 
-                    image: "/images/rewards/rewards-worried.png", 
+                    image: {rewards_worried}, 
                     ending: "NEUTRAL ENDING — Late Recovery", 
                     learning: "Acting late can still resolve issues but may already harm the community's perception." 
               },
@@ -232,7 +272,7 @@ const scenarios = {
                     character: "Community Manager", 
                     emotion: "worried", 
                     text: "Moderating complaint posts only pushed the conversation to external channels where the situation escalated.", 
-                    image: "/images/community_manager/comm-manager-sad.png",
+                    image: {comm_manager_sad},
                     ending: "BAD ENDING — Reputation Risk", 
                     learning: "Suppressing user concerns rarely solves the problem and may worsen trust issues." 
               },
@@ -241,7 +281,7 @@ const scenarios = {
                     character: "Rewards Officer", 
                     emotion: "overwhelmed", 
                     text: "The backlog of rewards kept growing and leadership demanded an urgent investigation into the operational failure.", 
-                    image: "/images/rewards/rewards-sad.png", 
+                    image: {rewards_sad}, 
                     ending: "BAD ENDING — Operational Breakdown", 
                     learning: "Ignoring operational warning signs can lead to major service failures." 
               }
@@ -1074,6 +1114,7 @@ function getEmotionSettings(emotion) {
   }
 }
 
+
 // Voice assignment per character
 const characterVoiceProfiles = {
   "Customer": { preferred: ["Microsoft Mark", "Google UK English Male"], pitch: 1.2, rate: 1.05 },
@@ -1161,6 +1202,7 @@ export default function CustomerServiceGame() {
   const current = scenario && node ? scenario.nodes[node] : null;
 
   const [shuffledChoices, setShuffledChoices] = useState([]);
+
 
 useEffect(() => {
   if (current?.choices) {
@@ -1362,7 +1404,7 @@ const startGame = () => {
 
     
   
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-cover bg-center " style={{ backgroundImage: "url('/images/all.png')" }}>
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${bgMenu})` }} >
   {[...Array(30)].map((_, i) => (
     <div
       key={i}
@@ -1374,14 +1416,14 @@ const startGame = () => {
     />
   ))}
            
-      <audio ref={menuBgmRef} src="/sfx/menu_start.mp3" preload="auto"/>
-      <audio ref={menuBtn} src="/sfx/btn_hover.mp3" preload="auto"/>      
-      <audio ref={clickSfx} src="/audio/click.mp3" preload="auto" /> 
+      <audio ref={menuBgmRef} src={menuStart} preload="auto"/>
+      <audio ref={menuBtn} src={btnHover} preload="auto"/>      
+     
       
       <div className="p-6 space-y-4 absolute top-0 left-0 w-screen h-full overflow-y-auto z-20 ">
        
         <div className="p-6 space-y-4 absolute right-0 top-0 h-full w-3/4 z-20 relative z-10 mx-auto">
-        <img src="/images/wellatsea-visual-novel.png" width="500" className="mx-auto block" />
+        <img src={bgLogo} width="500" className="mx-auto block" />
         <h1 className="text-3xl font-bold text-center text-white" style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.7)" }}>WellAtSea Visual Novel Simulator</h1>
         <p className="text-2x1 text-center font-bold" style={{ textShadow: "1px 1px 6px rgba(0,0,0,1)" }}>Select a scenario:</p>
         {Object.entries(scenarios).map(([key, s]) => (
@@ -1407,7 +1449,7 @@ const startGame = () => {
 
   <div className="w-full h-screen flex items-center justify-center bg-black text-white"> 
     <div className="w-full h-screen flex flex-col items-center justify-center bg-black text-white text-center">
-      <audio ref={menuBgmRef} src="/sfx/scenetitle.mp3" preload="auto" autoPlay/>
+      <audio ref={menuBgmRef} src={scenetitle} preload="auto" autoPlay/>
       <h1 className="text-4xl font-bold mb-4 text-white">{scenario.title}</h1>
       <p className="text-gray-300 mb-8">Prepare to handle this situation.</p>
       <button
