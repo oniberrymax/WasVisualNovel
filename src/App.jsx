@@ -47,7 +47,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "annoyed", 
             text: "So before even helping me you want paperwork?", 
-            image: "/WasVisualNovel/images/customer/customer-angry.png", 
+            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
             choices: [
               { text: "Explain policy calmly", next: "policy_support2" }, 
               { text: "Double down on policy", next: "double_down_policy" }] }, 
@@ -63,7 +63,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "calm", 
             text: "Thank you for looking and providing the receipt. We have verified your purchase. Can tell me exactly what happened so we can fix it quickly?",
-            image: "/WasVisualNovel/images/customer/customer-angry.png",
+            image: "/WasVisualNovel/images/customer/customer-angry.jpg",
             choices: [
               { text: "Get the gadget and investigate", next: "investigate" } ] },
           double_down_policy: { 
@@ -115,7 +115,7 @@ const scenarios = {
             character: "Customer", 
             emotion: "angry", 
             text: "This is terrible support. I'm posting a complaint online.", 
-            image: "/WasVisualNovel/images/customer/customer-angry.png", 
+            image: "/WasVisualNovel/images/customer/customer-angry.jpg", 
             ending: "Customer Escalation", 
             learning: "Rigid policy-first responses can escalate emotional customers. Listening first often prevents escalation." } 
     }},
@@ -500,7 +500,7 @@ const scenarios = {
             character: "Program Community Coordinator", 
             emotion: "worried", 
             text: "Automatically closing tickets caused users to reopen them and escalate complaints about unresolved issues.", 
-            image: "/WasVisualNovel/images/community/comm-manager-sad.png",
+            image: "/WasVisualNovel/images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Escalated Complaints", 
             learning: "Closing unresolved tickets without solutions damages trust in the support system." 
             },
@@ -661,7 +661,7 @@ const scenarios = {
         character: "Program Community Coordinator", 
         emotion: "concerned", 
         text: "The Creative Director rejected the poster request I submitted for the program campaign. They said the brief was unclear and the design direction doesn't align with the brand. But the campaign deadline is approaching and the community is waiting for the announcement.", 
-        image: "/WasVisualNovel/WasVisualNovel/images/pcc/pcc-neutral.png", 
+        image: "/WasVisualNovel/images/pcc/pcc-neutral.png", 
         choices: [
         { text: "Clarify the design brief and campaign objectives with the Creative Director", next: "clarifyBrief" },
         { text: "Ask the Creative Director to revise the design urgently", next: "urgentRequest" },
@@ -1375,7 +1375,7 @@ const startGame = () => {
   ))}
            
       <audio ref={menuBgmRef} src="/WasVisualNovel/sfx/menu_start.mp3" preload="auto"/>
-      <audio ref={menuBtn} src="WasVisualNovel/sfx/btn_hover.mp3" preload="auto"/>      
+      <audio ref={menuBtn} src="sfx/btn_hover.mp3" preload="auto"/>      
             
       <div className="p-6 space-y-4 absolute top-0 left-0 w-screen h-full overflow-y-auto z-20 ">
        
