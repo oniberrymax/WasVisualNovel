@@ -4,6 +4,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(270deg, #b400ff, #47054b, #1e293b);
+  background-size: 600% 600%;
+  animation: bgMove 15s ease infinite;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.bg-zoom {
+  animation: slowZoom 30s linear infinite alternate;
+}
+
+/*floating dust*/
+@keyframes float {
+  0% { transform: translateY(0); opacity: .2; }
+  50% { opacity: .6; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: float 10s linear infinite;
+}
+
+/*moving fog/mist effect*/
+@keyframes fogMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-fog {
+  animation: fogMove 60s linear infinite;
+}
 
 body {
   @apply bg-black text-white;
