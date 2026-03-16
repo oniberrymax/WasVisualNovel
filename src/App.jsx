@@ -166,9 +166,9 @@ const scenarios = {
                     { text: "Continue waiting for automatic processing", next: "badEnding4" }]},
   
               goodEnding1: { 
-                    character: "Technical Team", 
+                    character: "IT Engineer", 
                     emotion: "relieved", 
-                    text: "The engineers restarted the failed reward service and cleared the queue. Rewards are now being issued gradually.", 
+                    text: "We have restarted the failed reward service and cleared the queue. Rewards are now being issued gradually.", 
                     image: "images/it/engineer.png",
                     ending: "GOOD ENDING — System Fixed Quickly", 
                     learning: "Escalating technical issues quickly helps resolve problems efficiently and maintains user trust." 
@@ -398,10 +398,10 @@ const scenarios = {
         },
 
             reviewBacklog: { 
-            character: "Rewards Officer", 
+            character: "Technical Support", 
             emotion: "focused", 
             text: "Looking at the ticketing dashboard, there are over 80 unresolved tickets. Many are related to platform login issues and reward verification errors.", 
-            image: "images/rewards/rewards-worried.png",
+            image: "images/it/ts-neutral.png",
             choices: [
             { text: "Prioritize critical tickets and escalate to IT manager", next: "goodEnding1" },
             { text: "Start responding to tickets one by one", next: "neutralEnding1" },
@@ -437,16 +437,16 @@ const scenarios = {
             character: "IT Manager", 
             emotion: "relieved", 
             text: "Thanks for flagging the backlog. We've reassigned engineers to address the critical tickets first and implemented a priority queue.", 
-            image: "images/it/it-manager-neutral.png",
+            image: "images/it/it-manager-happy.png",
             ending: "GOOD ENDING — Efficient Ticket Resolution", 
             learning: "Prioritizing and escalating urgent support tickets helps resolve issues faster and improves support efficiency." 
             },
 
             neutralEnding1: { 
-            character: "Rewards Officer", 
+            character: "Technical Support", 
             emotion: "tired", 
             text: "Responding to tickets individually helped reduce the backlog slightly, but the queue kept growing because the core issues were not prioritized.", 
-            image: "images/rewards/rewards-sad.png",
+            image: "images/it/ts-sad.png",
             ending: "NEUTRAL ENDING — Slow Progress", 
             learning: "Handling tickets one by one may help temporarily but prioritization and coordination are essential." 
             },
@@ -488,10 +488,10 @@ const scenarios = {
             },
 
             neutralEnding3: { 
-            character: "IT Engineer", 
+            character: "Technical Support", 
             emotion: "focused", 
             text: "After auditing the queue, several urgent cases were finally addressed. However, many users experienced long waiting times.", 
-            image: "images/it/engineer.png",
+            image: "images/it/ts-neutral.png",
             ending: "NEUTRAL ENDING — Delayed Resolution", 
             learning: "Late intervention can still improve ticket management but may impact user satisfaction." 
             },
@@ -506,10 +506,10 @@ const scenarios = {
             },
 
             badEnding4: { 
-            character: "Rewards Officer", 
+            character: "IT Manager", 
             emotion: "overwhelmed", 
-            text: "The backlog doubled and leadership required an emergency review of the support process due to poor response times.", 
-            image: "images/rewards/rewards-sad.png",
+            text: "The backlog doubled and the top management required an emergency review of the support process due to poor response times.", 
+            image: "images/it/it-manager-overwhelmed.png",
             ending: "BAD ENDING — Critical Support Failure", 
             learning: "Ignoring ticket backlogs can quickly escalate into major operational problems." 
             }
@@ -1076,28 +1076,38 @@ function getEmotionSettings(emotion) {
 
 // Voice assignment per character
 const characterVoiceProfiles = {
-  "Customer": { preferred: ["Microsoft Mark", "Google UK English Male"], pitch: 1.2, rate: 1.05 },
-  "Support Agent": { preferred: ["Google UK English Male", "Microsoft David", "Daniel"], pitch: 1.2, rate: 1.05 },
-  "Rewards Officer": { preferred: ["Google UK English Male","Sean"], pitch: 1.05, rate: 0.95 },
-  "Community Manager": { preferred: ["Google UK English Female","Microsoft Jenny"], pitch: 1.1, rate: 1.0 },
-  "Operations Manager": { preferred: ["Google UK English Female","Microsoft Jenny"], pitch: 1.1, rate: 1.0 },
-  "Technical Team": { preferred: ["Microsoft Mark", "Microsoft David"], pitch: 0.95, rate: 0.9 },
-  "Technical Support": { preferred: ["Microsoft Guy", "Microsoft David"], pitch: 0.95, rate: 0.9 },
-  "IT Engineer": { preferred: ["Google UK English Male", "Microsoft David", "Daniel"], pitch: 1.2, rate: 1.05 },
-  "Operations": { preferred: ["Microsoft David", "Daniel"], pitch: 0.95, rate: 0.95 },
-  "Program Community Coordinator": { preferred: ["Microsoft Zira"], pitch: 0.95, rate: 0.95 },
-  "HR Manager": { preferred: ["Google UK English Female","Microsoft Jenny"], pitch: 1.1, rate: 1.0 },
+  "Customer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
+  "Support Agent": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.1, rate: 1.0 },
+  "Rewards Officer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
+  "Community Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
+  "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
+  "Operations Team": { preferred: ["male","david", "daniel"], pitch: 0.95, rate: 0.95 },
+  "Technical Support": { preferred: ["male", "guy", "david"], pitch: 0.95, rate: 0.9 },
+  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 1.2, rate: 1.05 },
+  "Program Community Coordinator": { preferred: ["female", "samantha", "zira", "jenny"], pitch: 1.2, rate: 1.05 },
+  "HR Manager": { preferred: ["female","Google UK English Female","jenny"], pitch: 1.1, rate: 1.0 },
+  "Designer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
+  "Creative Director": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.1, rate: 1.0 },
 };
 
-function findVoice(preferredNames, voices) {
-  for (let name of preferredNames) {
-    const v = voices.find(v => v.name.includes(name));
-    if (v) return v;
+function findVoice(preferredNames = [], voices = []) {
+
+  if (!voices.length) return null;
+
+  for (const name of preferredNames) {
+    const match = voices.find(v =>
+      v.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (match) return match;
   }
-  return voices[0];
-}
+
+  const englishVoice = voices.find(v => v.lang && v.lang.startsWith("en"));
+
+  return englishVoice || voices[0] || null;
+}    
 
 function speak(text, emotion, character, onEnd) {
+
   if (!window.speechSynthesis) return;
 
   const voices = window.speechSynthesis.getVoices();
@@ -1109,17 +1119,19 @@ function speak(text, emotion, character, onEnd) {
   };
 
   const utter = new SpeechSynthesisUtterance(text);
+
   const emotionSettings = getEmotionSettings(emotion);
 
   utter.pitch = profile.pitch * emotionSettings.pitch;
   utter.rate = profile.rate * emotionSettings.rate;
 
-  utter.voice = findVoice(profile.preferred, voices);
+  const voice = findVoice(profile.preferred, voices);
+  if (voice) utter.voice = voice;
 
   utter.onend = () => {
     if (onEnd) onEnd();
   };
-  
+
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utter);
 }
@@ -1292,7 +1304,7 @@ useEffect(() => {
   setNode(null);
   setScreen("title");
 }
-  function backToMenu() { playClick(); if (bgmRef.current) bgmRef.current.pause(); setScreen("menu"); setScenarioKey(null); setNode(null); }
+  function backToMenu() { playClick(); if (bgmRef.current) bgmRef.current.pause(); speechSynthesis.cancel(); setScreen("menu"); setScenarioKey(null); setNode(null); }
   function goNextRandom() { if (!current?.randomOutcomes) return; setTimeout(() => setNode(resolveRandom(current.randomOutcomes)), 700); }
   function toggleMusic() { if (bgmRef.current) bgmRef.current.pause(); }
 
@@ -1324,7 +1336,7 @@ const startGame = () => {
   
  <div className="bg-black absolute top-0 left-0 w-screen h-full overflow-y-auto z-20">
 <div
-    className={`h-screen bg-black flex items-center justify-center transition-opacity duration-700 ${
+    className={`max-h-full w-auto object-contain bg-black flex items-center justify-center transition-opacity duration-700 p-6 ${
       fadeOut ? "opacity-0" : "opacity-100"
     }`}
   >
