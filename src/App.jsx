@@ -1062,6 +1062,74 @@ const scenarios = {
 
 
 
+// Voice assignment per character
+const characterVoiceProfiles = {
+  "Customer": { preferred: ["Microsoft Mark", "Google UK English Male"], pitch: 1.2, rate: 1.05 },
+  "Support Agent": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 0.8, rate: 1.1 },
+  "Rewards Officer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
+  "Community Manager": { preferred: ["Google UK English Female", "female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
+  "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.3, rate: 1.0 },
+  "Operations Team": { preferred: ["Google US English Male","david", "daniel"], pitch: 0.95, rate: 0.95 },
+  "Technical Support": { preferred: ["Google US English Male", "guy", "david"], pitch: 2, rate: 1 },
+  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 0.7, rate: 0.90 },
+  "IT Manager": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 0.8, rate: 1 },
+  "IT Analyst": { preferred: ["David", "Google English Male", "Daniel"], pitch: 0.9, rate: 0.9 },
+  "Program Community Coordinator": { preferred: ["female", "samantha", "zira", "jenny"], pitch: 1.2, rate: 0.87 },
+  "HR Manager": { preferred: ["female","Google UK English Female","jenny"], pitch: 1.3, rate: 1.0 },
+  "Designer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
+  "Creative Director": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 0.9, rate: 1.0 },
+};
+
+// Global voice cache and mapping
+let availableVoices = [];
+const characterVoiceMap = {};
+
+function loadVoices() {
+  availableVoices = window.speechSynthesis.getVoices();
+}
+
+window.speechSynthesis.onvoiceschanged = loadVoices;
+ var voices = window.speechSynthesis.getVoices();
+    console.log(voices);
+function findVoice(preferredNames = []) {
+  if (!availableVoices.length) return null;
+
+  for (const name of preferredNames) {
+    const match = availableVoices.find(v => v.name.toLowerCase().includes(name.toLowerCase()));
+    if (match) return match;
+  }
+
+  return availableVoices.find(v => v.lang && v.lang.toLowerCase().startsWith("en")) || availableVoices[0];
+}
+
+function getCharacterVoice(character) {
+  if (characterVoiceMap[character]) return characterVoiceMap[character];
+
+  const profile = characterVoiceProfiles[character] || { preferred: [] };
+  const voice = findVoice(profile.preferred);
+  characterVoiceMap[character] = voice;
+  return voice;
+}
+
+function speak(text, emotion, character, onEnd) {
+  if (!window.speechSynthesis) return;
+
+  const profile = characterVoiceProfiles[character] || { preferred: [], pitch: 1, rate: 1 };
+  const emotionSettings = getEmotionSettings(emotion);
+  const utter = new SpeechSynthesisUtterance(text);
+
+  utter.pitch = profile.pitch * emotionSettings.pitch;
+  utter.rate = profile.rate * emotionSettings.rate;
+
+  const voice = getCharacterVoice(character);
+  if (voice) utter.voice = voice;
+
+  utter.onend = () => { if (onEnd) onEnd(); };
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utter);
+}
+
 function getEmotionSettings(emotion) {
   switch (emotion) {
     case "angry": return { pitch: 1.0, rate: 0.9, volume: 1 };
@@ -1072,70 +1140,6 @@ function getEmotionSettings(emotion) {
     case "uncertain": return { pitch: 1.05, rate: 0.95, volume: 0.95 };
     default: return { pitch: 1, rate: 1, volume: 1 };
   }
-}
-
-// Voice assignment per character
-const characterVoiceProfiles = {
-  "Customer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
-  "Support Agent": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 0.8, rate: 1.1 },
-  "Rewards Officer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
-  "Community Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
-  "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.3, rate: 1.0 },
-  "Operations Team": { preferred: ["Google US English Male","david", "daniel"], pitch: 0.95, rate: 0.95 },
-  "Technical Support": { preferred: ["Google US English Male", "guy", "david"], pitch: 2, rate: 1 },
-  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 0.6, rate: 0.90 },
-  "IT Manager": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 0.8, rate: 1 },
-  "IT Analyst": { preferred: ["Google US English Male", "guy", "david"], pitch: 1.7, rate: 0.9 },
-  "Program Community Coordinator": { preferred: ["female", "samantha", "zira", "jenny"], pitch: 1.2, rate: 1.05 },
-  "HR Manager": { preferred: ["female","Google UK English Female","jenny"], pitch: 1.3, rate: 1.0 },
-  "Designer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
-  "Creative Director": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.5, rate: 1.0 },
-};
-
-function findVoice(preferredNames = [], voices = []) {
-
-  if (!voices.length) return null;
-
-  for (const name of preferredNames) {
-    const match = voices.find(v =>
-      v.name.toLowerCase().includes(name.toLowerCase())
-    );
-    if (match) return match;
-  }
-
-  const englishVoice = voices.find(v => v.lang && v.lang.startsWith("en"));
-
-  return englishVoice || voices[0] || null;
-}    
-
-function speak(text, emotion, character, onEnd) {
-
-  if (!window.speechSynthesis) return;
-
-  const voices = window.speechSynthesis.getVoices();
-
-  const profile = characterVoiceProfiles[character] || {
-    preferred: [],
-    pitch: 1,
-    rate: 1
-  };
-
-  const utter = new SpeechSynthesisUtterance(text);
-
-  const emotionSettings = getEmotionSettings(emotion);
-
-  utter.pitch = profile.pitch * emotionSettings.pitch;
-  utter.rate = profile.rate * emotionSettings.rate;
-
-  const voice = findVoice(profile.preferred, voices);
-  if (voice) utter.voice = voice;
-
-  utter.onend = () => {
-    if (onEnd) onEnd();
-  };
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utter);
 }
 
 function shuffleArray(array) {
@@ -1244,7 +1248,7 @@ useEffect(() => {
 
      if (screen === 'game' && scenario?.music && bgmRef.current) {
     bgmRef.current.src = scenario.music;
-    bgmRef.current.volume = 0.30;
+    bgmRef.current.volume = 0.15;
     bgmRef.current.loop = true;
     bgmRef.current.currentTime = 0;
     bgmRef.current.play().catch(() => {});
@@ -1395,7 +1399,7 @@ const startGame = () => {
        
         <div className="p-6 space-y-4 absolute right-0 top-0 h-full w-3/4 z-20 relative z-10 mx-auto">
         <img src="images/wellatsea-visual-novel.png" width="500" className="mx-auto block" />
-        <h1 className="text-3xl font-bold text-center text-white" style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.7)" }}>WellAtSea Visual Novel Simulator</h1>
+        <h1 className="text-3xl font-bold text-center text-white" style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.7)" }}>Friday Wrap-up: Visual Novel Simulator</h1>
         <p className="text-2x1 text-center font-bold" style={{ textShadow: "1px 1px 6px rgba(0,0,0,1)" }}>Select a scenario:</p>
         {Object.entries(scenarios).map(([key, s]) => (
           <button 
