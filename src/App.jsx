@@ -1071,7 +1071,7 @@ const characterVoiceProfiles = {
   "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.3, rate: 1.0 },
   "Operations Team": { preferred: ["Google US English Male","david", "daniel"], pitch: 0.95, rate: 0.95 },
   "Technical Support": { preferred: ["Google US English Male", "guy", "david"], pitch: 2, rate: 1 },
-  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 0.7, rate: 0.90 },
+  "IT Engineer": { preferred: ["Google US English Male","Mark", "david", "daniel"], pitch: 0.8, rate: 0.80 },
   "IT Manager": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 0.8, rate: 1 },
   "IT Analyst": { preferred: ["David", "Google English Male", "Daniel"], pitch: 0.9, rate: 0.9 },
   "Program Community Coordinator": { preferred: ["female", "samantha", "zira", "jenny"], pitch: 1.2, rate: 0.87 },
@@ -1138,6 +1138,8 @@ function getEmotionSettings(emotion) {
     case "calm": return { pitch: 1.1, rate: 0.9, volume: 1 };
     case "happy": return { pitch: 1.25, rate: 1, volume: 1 };
     case "uncertain": return { pitch: 1.05, rate: 0.95, volume: 0.95 };
+    case "relieved": return { pitch: 1.25, rate: 1, volume: 1 };
+
     default: return { pitch: 1, rate: 1, volume: 1 };
   }
 }
