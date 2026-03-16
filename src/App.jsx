@@ -832,7 +832,7 @@ const scenarios = {
             ignoreConflict: { 
             character: "Community Manager", 
             emotion: "uncertain", 
-            text: "The conflict continues to grow. Other team members are starting to feel uncomfortable during discussions.", 
+            text: "The conflict between the involved parties continues to escalate, contributing to an increasingly tense atmosphere within the team. Consequently, other team members have started to feel uncomfortable during discussions, which may impact collaboration and overall team dynamics.", 
             image: "images/community_manager/comm-manager-sad.png",
             choices: [
             { text: "Address the issue now and escalate to HR", next: "neutralEnding3" },
@@ -871,7 +871,7 @@ const scenarios = {
             goodEnding2: { 
             character: "HR Manager", 
             emotion: "focused", 
-            text: "With detailed documentation, HR quickly understood the situation and facilitated a structured conflict resolution process.", 
+            text: "The availability of detailed and well-organized documentation enabled the Human Resources department to quickly gain a clear understanding of the situation. As a result, HR was able to promptly facilitate a structured conflict resolution process to address the concerns and guide the parties involved toward a resolution.", 
             image: "images/hr/hr-happy.png",
             ending: "GOOD ENDING — Effective HR Intervention", 
             learning: "Providing clear documentation helps HR resolve workplace conflicts efficiently." 
@@ -880,7 +880,7 @@ const scenarios = {
             neutralEnding2: { 
             character: "HR Manager", 
             emotion: "concerned", 
-            text: "HR needed additional information before taking action, delaying the resolution process.", 
+            text: "The Human Resources department needed additional information and clarification before they could properly assess the situation and determine the appropriate course of action. Because of this requirement, the resolution process experienced a delay while the requested details were being collected and verified.", 
             image: "images/hr/hr-neutral.png",
             ending: "NEUTRAL ENDING — Delayed HR Response", 
             learning: "Escalating conflicts without context can slow HR’s ability to help." 
@@ -916,7 +916,7 @@ const scenarios = {
             badEnding4: { 
             character: "Community Manager", 
             emotion: "overwhelmed", 
-            text: "Ignoring the conflict allowed it to escalate into a serious workplace dispute requiring formal HR investigation.", 
+            text: "Because the conflict was not addressed promptly, the situation gradually intensified and became more complex. The absence of early resolution measures allowed tensions to build between the parties involved, eventually leading to a serious workplace dispute that required formal review and investigation by the Human Resources department.", 
             image: "images/community_manager/comm-manager-sad.png",
             ending: "BAD ENDING — Formal HR Disciplinary Case", 
             learning: "Unresolved internal conflicts can escalate into serious HR cases if ignored." 
@@ -1077,17 +1077,19 @@ function getEmotionSettings(emotion) {
 // Voice assignment per character
 const characterVoiceProfiles = {
   "Customer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
-  "Support Agent": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.1, rate: 1.0 },
+  "Support Agent": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 0.8, rate: 1.1 },
   "Rewards Officer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
   "Community Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
-  "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.1, rate: 1.0 },
-  "Operations Team": { preferred: ["male","david", "daniel"], pitch: 0.95, rate: 0.95 },
-  "Technical Support": { preferred: ["male", "guy", "david"], pitch: 0.95, rate: 0.9 },
-  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 1.2, rate: 1.05 },
+  "Operations Manager": { preferred: ["female", "jenny", "samantha"], pitch: 1.3, rate: 1.0 },
+  "Operations Team": { preferred: ["Google US English Male","david", "daniel"], pitch: 0.95, rate: 0.95 },
+  "Technical Support": { preferred: ["Google US English Male", "guy", "david"], pitch: 2, rate: 1 },
+  "IT Engineer": { preferred: ["male","Google UK English Male", "david", "daniel"], pitch: 0.6, rate: 0.90 },
+  "IT Manager": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 0.8, rate: 1 },
+  "IT Analyst": { preferred: ["Google US English Male", "guy", "david"], pitch: 1.7, rate: 0.9 },
   "Program Community Coordinator": { preferred: ["female", "samantha", "zira", "jenny"], pitch: 1.2, rate: 1.05 },
-  "HR Manager": { preferred: ["female","Google UK English Female","jenny"], pitch: 1.1, rate: 1.0 },
+  "HR Manager": { preferred: ["female","Google UK English Female","jenny"], pitch: 1.3, rate: 1.0 },
   "Designer": { preferred: ["Google US English Male", "guy", "daniel","mark"], pitch: 1.2, rate: 1.05 },
-  "Creative Director": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.1, rate: 1.0 },
+  "Creative Director": { preferred: ["Google UK English Male", "sean", "mark", "daniel"], pitch: 1.5, rate: 1.0 },
 };
 
 function findVoice(preferredNames = [], voices = []) {
